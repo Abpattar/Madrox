@@ -33,18 +33,18 @@ export function Navigation() {
             >
               Find Doctors
             </Link>
-            <a
-              href="#"
+            <Link
+              to="/price-db"
               className="text-sm text-foreground hover:text-primary transition-colors"
             >
               Price DB
-            </a>
-            <a
-              href="#"
+            </Link>
+            <Link
+              to="/community"
               className="text-sm text-foreground hover:text-primary transition-colors"
             >
               Community
-            </a>
+            </Link>
           </div>
 
           {/* Right Side */}
