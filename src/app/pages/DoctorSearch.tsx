@@ -3,6 +3,8 @@ import { FloatingSearchBar } from "@/app/components/FloatingSearchBar";
 import { DoctorCard } from "@/app/components/DoctorCard";
 import { motion } from "motion/react";
 import { BackgroundBlobs } from "@/app/components/BackgroundBlobs";
+import { PageTransition } from "@/app/components/PageTransition";
+import { Footer } from "@/app/components/Footer";
 
 // Mock doctor data
 const mockDoctors = [
@@ -64,7 +66,7 @@ const mockDoctors = [
 
 export function DoctorSearch() {
   return (
-    <div className="min-h-screen bg-background pb-32 relative overflow-hidden">
+    <PageTransition className="min-h-screen bg-background pb-32 relative overflow-hidden">
       <BackgroundBlobs />
       <Navigation />
 
@@ -107,6 +109,7 @@ export function DoctorSearch() {
       </main>
 
       <FloatingSearchBar />
-    </div>
+      <Footer />
+    </PageTransition>
   );
 }

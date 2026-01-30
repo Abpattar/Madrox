@@ -1,15 +1,18 @@
 import { BackgroundBlobs } from "@/app/components/BackgroundBlobs";
+import { FloatingSearchBar } from "@/app/components/FloatingSearchBar";
 import { Navigation } from "@/app/components/Navigation";
 import { Button } from "@/app/components/ui/button";
 import { MessageSquare, Heart, Share2 } from "lucide-react";
 import { motion } from "motion/react";
+import { PageTransition } from "@/app/components/PageTransition";
+import { Footer } from "@/app/components/Footer";
 
 const stories = [
     {
         id: 1,
         author: "Sarah M.",
         avatar: "SM",
-        title: "Saved $3,500 on my ER bill!",
+        title: "Saved ₹2.5 Lakhs on my ER bill!",
         content: "I didn't know I could dispute the 'facility fee'. Thanks to Madrox, I generated a letter and they dropped the charge immediately.",
         tags: ["Success Story", "ER Bill"],
         likes: 124,
@@ -21,7 +24,7 @@ const stories = [
         author: "David K.",
         avatar: "DK",
         title: "Guide: How to negotiate MRI costs",
-        content: "Never pay the sticker price. Here are the 3 codes you need to check before paying...",
+        content: "Never pay the sticker price. The difference between Hospital and Clinic rates in NCR is huge. Saved ₹12k just by switching...",
         tags: ["Advice", "MRI"],
         likes: 89,
         comments: 12,
@@ -32,7 +35,7 @@ const stories = [
         author: "Elena R.",
         avatar: "ER",
         title: "Insurance denied my claim. Help?",
-        content: "They are saying it was 'not medically necessary' even though my doctor ordered it. Has anyone dealt with BlueCross on this?",
+        content: "They are saying it was 'not medically necessary' even though my doctor ordered it. Has anyone dealt with Star Health on this?",
         tags: ["Question", "Insurance"],
         likes: 56,
         comments: 34,
@@ -43,7 +46,7 @@ const stories = [
         author: "Marcus J.",
         avatar: "MJ",
         title: "The 'Cash Price' Loophole",
-        content: "I found out that paying cash was actually 40% cheaper than using my high-deductible insurance.",
+        content: "I found out that paying cash was actually 40% cheaper than using my high-deductible insurance plan.",
         tags: ["Tip", "Savings"],
         likes: 230,
         comments: 67,
@@ -53,7 +56,7 @@ const stories = [
 
 export function Community() {
     return (
-        <div className="min-h-screen bg-background pb-32 relative overflow-hidden">
+        <PageTransition className="min-h-screen bg-background pb-32 relative overflow-hidden">
             <BackgroundBlobs />
             <Navigation />
 
@@ -66,9 +69,12 @@ export function Community() {
                         transition={{ duration: 0.5 }}
                         className="text-center space-y-6 py-12"
                     >
-                        <span className="inline-block px-4 py-1.5 rounded-full bg-white/40 border border-white/50 text-primary text-sm font-medium backdrop-blur-sm">
+                        <motion.span
+                            whileHover={{ scale: 1.05 }}
+                            className="inline-block px-4 py-1.5 rounded-full bg-white/40 border border-white/50 text-primary text-sm font-medium backdrop-blur-sm cursor-default"
+                        >
                             Community Hub
-                        </span>
+                        </motion.span>
                         <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
                             Patient <span className="text-secondary">Stories</span> & Advice
                         </h1>
@@ -76,14 +82,19 @@ export function Community() {
                             Join 10,000+ patients helping each other navigate the healthcare system.
                         </p>
 
-                        <div className="flex justify-center gap-4">
-                            <Button size="lg" className="rounded-full px-8 shadow-lg shadow-primary/20">
+                        <motion.div
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.2 }}
+                            className="flex justify-center gap-4"
+                        >
+                            <Button size="lg" className="rounded-full px-8 shadow-lg shadow-primary/20 hover:scale-105 transition-transform">
                                 Share Your Story
                             </Button>
-                            <Button variant="outline" size="lg" className="rounded-full px-8 bg-white/40 border-primary/20 hover:bg-white/60">
+                            <Button variant="outline" size="lg" className="rounded-full px-8 bg-white/40 border-primary/20 hover:bg-white/60 hover:scale-105 transition-transform">
                                 Browse Topics
                             </Button>
-                        </div>
+                        </motion.div>
                     </motion.div>
 
                     {/* Featured/Masonry Grid */}
@@ -94,8 +105,8 @@ export function Community() {
                                 initial={{ opacity: 0, y: 30 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: i * 0.1, duration: 0.5 }}
-                                whileHover={{ y: -5, transition: { duration: 0.2 } }}
-                                className="bg-white/60 backdrop-blur-md border border-white/40 rounded-3xl p-6 shadow-sm hover:shadow-xl hover:shadow-primary/10 transition-all cursor-pointer group"
+                                whileHover={{ y: -8, scale: 1.01, transition: { duration: 0.2 } }}
+                                className="bg-white/60 backdrop-blur-md border border-white/40 rounded-[24px] p-6 shadow-sm hover:shadow-xl hover:shadow-primary/10 transition-all cursor-pointer group"
                             >
                                 <div className="flex items-center gap-3 mb-4">
                                     <div className={`w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-sm ${story.color}`}>
@@ -116,7 +127,7 @@ export function Community() {
 
                                 <div className="flex flex-wrap gap-2 mb-6">
                                     {story.tags.map(tag => (
-                                        <span key={tag} className="px-2 py-1 rounded-md bg-white/50 text-xs font-medium text-foreground/80 border border-white/40">
+                                        <span key={tag} className="px-2 py-1 rounded-md bg-white/50 text-xs font-medium text-foreground/80 border border-white/40 group-hover:bg-primary/5 transition-colors">
                                             #{tag}
                                         </span>
                                     ))}
@@ -140,6 +151,8 @@ export function Community() {
                     </div>
                 </div>
             </main>
-        </div>
+            <FloatingSearchBar />
+            <Footer />
+        </PageTransition>
     );
 }

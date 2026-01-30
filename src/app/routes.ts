@@ -5,6 +5,7 @@ import { BillAudit } from "@/app/pages/BillAudit";
 import { LoginPage } from "@/app/pages/LoginPage";
 import { PriceDB } from "@/app/pages/PriceDB";
 import { Community } from "@/app/pages/Community";
+import { About } from "@/app/pages/About";
 
 export const router = createBrowserRouter([
   {
@@ -30,5 +31,9 @@ export const router = createBrowserRouter([
   {
     path: "/community",
     Component: Community,
+  },
+  {
+    path: "/about",
+    Component: About,
   },
 ]);

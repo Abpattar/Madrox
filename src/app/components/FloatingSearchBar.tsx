@@ -14,16 +14,16 @@ export function FloatingSearchBar() {
   };
 
   return (
-    <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 w-full max-w-2xl px-4">
-      <div className="bg-card shadow-lg border border-border rounded-full flex items-center px-4 py-3 gap-3">
-        <Button 
-          variant="ghost" 
-          size="icon" 
-          className="flex-shrink-0 rounded-full"
+    <div className="w-full max-w-3xl mx-auto my-32 px-6 relative z-20">
+      <div className="bg-white/80 backdrop-blur-md shadow-2xl shadow-primary/10 border border-white/50 rounded-full flex items-center px-6 py-4 gap-4 transition-all hover:shadow-primary/20 hover:scale-[1.01]">
+        <Button
+          variant="ghost"
+          size="icon"
+          className="flex-shrink-0 rounded-full w-10 h-10 hover:bg-primary/10 hover:text-primary transition-colors"
         >
-          <Camera className="w-5 h-5" />
+          <Camera className="w-6 h-6 text-muted-foreground" />
         </Button>
-        
+
         <Input
           type="text"
           placeholder="Search symptoms, doctors, or upload a bill..."
@@ -34,15 +34,15 @@ export function FloatingSearchBar() {
               handleSearch();
             }
           }}
-          className="border-0 bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 px-0"
+          className="border-0 bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 px-0 h-auto text-lg placeholder:text-muted-foreground/60"
         />
-        
-        <Button 
-          size="icon" 
-          className="flex-shrink-0 rounded-full"
+
+        <Button
+          size="icon"
+          className="flex-shrink-0 rounded-full w-12 h-12 shadow-md bg-gradient-to-tr from-primary to-secondary border-none hover:shadow-lg transition-all"
           onClick={handleSearch}
         >
-          <Send className="w-4 h-4" />
+          <Send className="w-5 h-5 text-white" />
         </Button>
       </div>
     </div>

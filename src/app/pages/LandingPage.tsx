@@ -1,14 +1,31 @@
 import { Navigation } from "@/app/components/Navigation";
+import { Link } from "react-router";
 import { FloatingSearchBar } from "@/app/components/FloatingSearchBar";
 import { BackgroundBlobs } from "@/app/components/BackgroundBlobs";
 import { Button } from "@/app/components/ui/button";
 import { motion } from "motion/react";
 import { ArrowRight, ShieldCheck, Activity, Users } from "lucide-react";
+import { PageTransition } from "@/app/components/PageTransition";
+import { Footer } from "@/app/components/Footer";
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const wordVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 },
+};
 
 export function LandingPage() {
   return (
-    <div className="min-h-screen relative overflow-hidden">
+    <PageTransition className="min-h-screen relative overflow-hidden">
       <BackgroundBlobs />
       <Navigation />
 
@@ -19,34 +36,43 @@ export function LandingPage() {
             {/* Left Column: Hero Text */}
             <motion.div
               className="flex-1 space-y-8 text-center lg:text-left"
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
+              initial="hidden"
+              animate="visible"
+              variants={containerVariants}
             >
               <div className="space-y-4">
-                <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium border border-primary/20">
+                <motion.span
+                  variants={wordVariants}
+                  className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium border border-primary/20"
+                >
                   AI-Powered Healthcare Advocacy
-                </span>
+                </motion.span>
+
                 <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-foreground leading-tight">
-                  Democratizing <br />
-                  <span className="bg-grad-main bg-clip-text text-transparent">Fair Healthcare</span>
+                  <motion.span variants={wordVariants} className="block">Democratizing</motion.span>
+                  <motion.span variants={wordVariants} className="bg-grad-main bg-clip-text text-transparent block">Fair Healthcare</motion.span>
                 </h1>
-                <p className="text-xl text-muted-foreground font-normal max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+
+                <motion.p variants={wordVariants} className="text-xl text-muted-foreground font-normal max-w-2xl mx-auto lg:mx-0 leading-relaxed">
                   Stop overpaying for medical bills. Our AI analyzes, audits, and generates dispute letters to save you money in seconds.
-                </p>
+                </motion.p>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                <Button size="lg" className="h-14 px-8 text-lg rounded-full shadow-lg shadow-primary/25 hover:shadow-primary/40 transition-shadow">
-                  Audit My Bill
-                  <ArrowRight className="ml-2 w-5 h-5" />
-                </Button>
-                <Button variant="outline" size="lg" className="h-14 px-8 text-lg rounded-full bg-white/50 border-primary/20 hover:bg-white/80 backdrop-blur-sm">
-                  Find a Doctor
-                </Button>
-              </div>
+              <motion.div variants={wordVariants} className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                <Link to="/bill-audit">
+                  <Button size="lg" className="h-14 px-8 text-lg rounded-full shadow-lg shadow-primary/25 hover:shadow-primary/40 transition-shadow w-full sm:w-auto">
+                    Audit My Bill
+                    <ArrowRight className="ml-2 w-5 h-5" />
+                  </Button>
+                </Link>
+                <Link to="/doctor-search">
+                  <Button variant="outline" size="lg" className="h-14 px-8 text-lg rounded-full bg-white/50 border-primary/20 hover:bg-white/80 backdrop-blur-sm w-full sm:w-auto">
+                    Find a Doctor
+                  </Button>
+                </Link>
+              </motion.div>
 
-              <div className="pt-8 flex items-center justify-center lg:justify-start gap-8 text-sm text-muted-foreground">
+              <motion.div variants={wordVariants} className="pt-8 flex items-center justify-center lg:justify-start gap-8 text-sm text-muted-foreground">
                 <div className="flex items-center gap-2">
                   <ShieldCheck className="w-5 h-5 text-secondary" />
                   <span>HIPAA Compliant</span>
@@ -59,7 +85,7 @@ export function LandingPage() {
                   <Users className="w-5 h-5 text-secondary" />
                   <span>10k+ Users</span>
                 </div>
-              </div>
+              </motion.div>
             </motion.div>
 
             {/* Right Column: Visual/3D Placeholder */}
@@ -67,11 +93,15 @@ export function LandingPage() {
               className="flex-1 w-full max-w-xl lg:max-w-none"
               initial={{ opacity: 0, scale: 0.9, rotate: 5 }}
               animate={{ opacity: 1, scale: 1, rotate: 0 }}
-              transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
+              transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
             >
               <div className="relative">
                 {/* Glass Card Container */}
-                <div className="aspect-square md:aspect-[4/3] bg-white/40 backdrop-blur-xl border border-white/50 rounded-[32px] shadow-[0_32px_64px_-16px_rgba(169,38,85,0.15)] flex items-center justify-center p-8 relative z-20 overflow-hidden group hover:scale-[1.02] transition-transform duration-500">
+                <motion.div
+                  animate={{ y: [0, -10, 0] }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                  className="aspect-square md:aspect-[4/3] bg-white/40 backdrop-blur-xl border border-white/50 rounded-[32px] shadow-[0_32px_64px_-16px_rgba(169,38,85,0.15)] flex items-center justify-center p-8 relative z-20 overflow-hidden group hover:scale-[1.02] transition-transform duration-500"
+                >
                   <div className="absolute inset-0 bg-gradient-to-br from-white/40 to-white/0 pointer-events-none" />
 
                   {/* Mock UI Content */}
@@ -87,8 +117,8 @@ export function LandingPage() {
                         </div>
                       </div>
                       <div className="text-right">
-                        <div className="font-bold text-primary">$1,250.00</div>
-                        <div className="text-xs text-secondary">Potential Savings: $450</div>
+                        <div className="font-bold text-primary">₹85,000</div>
+                        <div className="text-xs text-secondary">Potential Savings: ₹35,000</div>
                       </div>
                     </div>
 
@@ -103,7 +133,7 @@ export function LandingPage() {
                       <p className="text-xs text-muted-foreground">Duplicate charge detected for "Metabolic Panel". Recommended action: Dispute.</p>
                     </div>
                   </div>
-                </div>
+                </motion.div>
 
                 {/* Decorative Elements behind card */}
                 <div className="absolute -top-12 -right-12 w-48 h-48 bg-secondary rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob" />
@@ -115,6 +145,7 @@ export function LandingPage() {
       </main>
 
       <FloatingSearchBar />
-    </div>
+      <Footer />
+    </PageTransition>
   );
 }

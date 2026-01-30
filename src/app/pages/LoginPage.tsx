@@ -2,10 +2,16 @@ import { useState } from "react";
 import { Button } from "@/app/components/ui/button";
 import { Input } from "@/app/components/ui/input";
 import { Facebook, Linkedin, Twitter } from "lucide-react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 export function LoginPage() {
     const [isRightPanelActive, setIsRightPanelActive] = useState(false);
+    const navigate = useNavigate();
+
+    const handleLogin = (e: React.FormEvent) => {
+        e.preventDefault();
+        navigate("/");
+    };
 
     return (
         <div className="flex items-center justify-center min-h-screen bg-gray-100 flex-col font-sans">
@@ -39,7 +45,7 @@ export function LoginPage() {
                             <Input type="email" placeholder="Email" className="bg-gray-100 border-none" />
                             <Input type="password" placeholder="Password" className="bg-gray-100 border-none" />
                         </div>
-                        <Button size="lg" className="rounded-full px-12 py-3 uppercase tracking-wider font-bold">Sign Up</Button>
+                        <Button size="lg" onClick={handleLogin} className="rounded-full px-12 py-3 uppercase tracking-wider font-bold">Sign Up</Button>
                     </form>
                 </div>
 
@@ -67,7 +73,7 @@ export function LoginPage() {
                             <Input type="password" placeholder="Password" className="bg-gray-100 border-none" />
                         </div>
                         <a href="#" className="text-sm text-gray-800 mb-6 hover:underline">Forgot your password?</a>
-                        <Button size="lg" className="rounded-full px-12 py-3 uppercase tracking-wider font-bold">Sign In</Button>
+                        <Button size="lg" onClick={handleLogin} className="rounded-full px-12 py-3 uppercase tracking-wider font-bold">Sign In</Button>
                     </form>
                 </div>
 
