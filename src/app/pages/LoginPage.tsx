@@ -16,8 +16,8 @@ export function LoginPage() {
                 {/* Sign Up Container */}
                 <div
                     className={`absolute top-0 h-full transition-all duration-600 ease-in-out left-0 w-1/2 ${isRightPanelActive
-                            ? "opacity-100 z-[5] translate-x-full"
-                            : "opacity-0 z-[1]"
+                        ? "opacity-100 z-[5] translate-x-full"
+                        : "opacity-0 z-[1]"
                         }`}
                 >
                     <form className="bg-white flex flex-col items-center justify-center h-full px-12 text-center">
@@ -77,7 +77,7 @@ export function LoginPage() {
                         }`}
                 >
                     <div
-                        className={`bg-gradient-to-r from-[#FF4B2B] to-[#FF416C] bg-no-repeat bg-cover relative -left-full h-full w-[200%] transition-transform duration-600 ease-in-out ${isRightPanelActive ? "translate-x-1/2" : "translate-x-0"
+                        className={`bg-[image:var(--grad-main)] bg-no-repeat bg-cover relative -left-full h-full w-[200%] transition-transform duration-600 ease-in-out ${isRightPanelActive ? "translate-x-1/2" : "translate-x-0"
                             }`}
                     >
                         {/* Left Overlay Panel (for Sign In view, shows when right panel is active) */}
@@ -90,7 +90,7 @@ export function LoginPage() {
                             <Button
                                 variant="outline"
                                 size="lg"
-                                className="bg-transparent border-white text-white rounded-full px-12 py-3 uppercase tracking-wider font-bold hover:bg-white hover:text-[#FF4B2B]"
+                                className="bg-transparent border-white text-white rounded-full px-12 py-3 uppercase tracking-wider font-bold hover:bg-white hover:text-primary transition-colors"
                                 onClick={() => setIsRightPanelActive(false)}
                             >
                                 Sign In
@@ -107,7 +107,7 @@ export function LoginPage() {
                             <Button
                                 variant="outline"
                                 size="lg"
-                                className="bg-transparent border-white text-white rounded-full px-12 py-3 uppercase tracking-wider font-bold hover:bg-white hover:text-[#FF416C]"
+                                className="bg-transparent border-white text-white rounded-full px-12 py-3 uppercase tracking-wider font-bold hover:bg-white hover:text-primary transition-colors"
                                 onClick={() => setIsRightPanelActive(true)}
                             >
                                 Sign Up

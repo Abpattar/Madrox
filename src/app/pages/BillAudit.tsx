@@ -1,3 +1,4 @@
+import { BackgroundBlobs } from "@/app/components/BackgroundBlobs";
 import { useState } from "react";
 import { Navigation } from "@/app/components/Navigation";
 import { FloatingSearchBar } from "@/app/components/FloatingSearchBar";
@@ -70,10 +71,11 @@ export function BillAudit() {
   const overchargedAmount = totalCharged - totalAverage;
 
   return (
-    <div className="min-h-screen bg-background pb-32">
+    <div className="min-h-screen bg-background pb-32 relative overflow-hidden">
+      <BackgroundBlobs />
       <Navigation />
-      
-      <main className="pt-24 px-6">
+
+      <main className="pt-24 px-6 relative z-10">
         <div className="max-w-7xl mx-auto">
           <div className="mb-8">
             <h1 className="text-3xl font-semibold text-foreground mb-2">
@@ -86,14 +88,14 @@ export function BillAudit() {
 
           {!billUploaded ? (
             /* Upload Zone */
-            <motion.div 
+            <motion.div
               className="max-w-2xl mx-auto"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3 }}
             >
               <label htmlFor="bill-upload" className="cursor-pointer block">
-                <div className="border-2 border-dashed border-border rounded-[12px] p-12 text-center hover:border-primary hover:bg-primary/5 transition-all">
+                <div className="border-2 border-dashed border-border rounded-[12px] p-12 text-center hover:border-primary hover:bg-primary/5 transition-all bg-white/50 backdrop-blur-sm">
                   <Upload className="w-16 h-16 mx-auto text-muted-foreground mb-4" />
                   <h3 className="text-xl font-semibold text-foreground mb-2">
                     Upload Your Bill
@@ -116,7 +118,7 @@ export function BillAudit() {
             </motion.div>
           ) : (
             /* Bill Analysis */
-            <motion.div 
+            <motion.div
               className="grid grid-cols-1 lg:grid-cols-2 gap-8"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -128,12 +130,12 @@ export function BillAudit() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.3, delay: 0.1 }}
               >
-                <Card className="p-6 rounded-[12px] shadow-[0_4px_20px_rgba(0,0,0,0.04)]">
+                <Card className="p-6 rounded-[12px] shadow-[0_4px_20px_rgba(0,0,0,0.04)] bg-white/80 backdrop-blur-md">
                   <div className="flex items-center gap-3 mb-4">
                     <FileText className="w-5 h-5 text-primary" />
                     <h2 className="text-lg font-semibold">Scanned Bill</h2>
                   </div>
-                  <div className="aspect-[8.5/11] bg-muted rounded-lg flex items-center justify-center border border-border">
+                  <div className="aspect-[8.5/11] bg-muted/50 rounded-lg flex items-center justify-center border border-border">
                     <div className="text-center space-y-2">
                       <FileText className="w-12 h-12 mx-auto text-muted-foreground" />
                       <p className="text-sm text-muted-foreground">Bill Preview</p>
@@ -143,24 +145,23 @@ export function BillAudit() {
               </motion.div>
 
               {/* Right: Line Items */}
-              <motion.div 
+              <motion.div
                 className="space-y-6"
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.3, delay: 0.2 }}
               >
-                <Card className="p-6 rounded-[12px] shadow-[0_4px_20px_rgba(0,0,0,0.04)]">
+                <Card className="p-6 rounded-[12px] shadow-[0_4px_20px_rgba(0,0,0,0.04)] bg-white/80 backdrop-blur-md">
                   <h2 className="text-lg font-semibold mb-4">Line-Item Breakdown</h2>
-                  
+
                   <div className="space-y-3">
                     {mockBillItems.map((item) => (
                       <div
                         key={item.id}
-                        className={`p-4 rounded-lg border ${
-                          item.overcharged
+                        className={`p-4 rounded-lg border ${item.overcharged
                             ? "border-destructive/30 bg-destructive/5"
-                            : "border-border bg-card"
-                        }`}
+                            : "border-border bg-card/50"
+                          }`}
                       >
                         <div className="flex items-start justify-between gap-4">
                           <div className="flex-1">
@@ -175,9 +176,8 @@ export function BillAudit() {
                             </div>
                           </div>
                           <div className="text-right">
-                            <div className={`font-semibold ${
-                              item.overcharged ? "text-destructive" : "text-foreground"
-                            }`}>
+                            <div className={`font-semibold ${item.overcharged ? "text-destructive" : "text-foreground"
+                              }`}>
                               ${item.charged.toFixed(2)}
                             </div>
                             {item.overcharged && (

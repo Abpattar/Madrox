@@ -2,6 +2,7 @@ import { Navigation } from "@/app/components/Navigation";
 import { FloatingSearchBar } from "@/app/components/FloatingSearchBar";
 import { DoctorCard } from "@/app/components/DoctorCard";
 import { motion } from "motion/react";
+import { BackgroundBlobs } from "@/app/components/BackgroundBlobs";
 
 // Mock doctor data
 const mockDoctors = [
@@ -63,13 +64,14 @@ const mockDoctors = [
 
 export function DoctorSearch() {
   return (
-    <div className="min-h-screen bg-background pb-32">
+    <div className="min-h-screen bg-background pb-32 relative overflow-hidden">
+      <BackgroundBlobs />
       <Navigation />
-      
-      <main className="pt-24 px-6">
+
+      <main className="pt-24 px-6 relative z-10">
         <div className="max-w-7xl mx-auto">
           {/* Page Header */}
-          <motion.div 
+          <motion.div
             className="mb-8"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -84,7 +86,7 @@ export function DoctorSearch() {
           </motion.div>
 
           {/* Doctor Cards Grid */}
-          <motion.div 
+          <motion.div
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
