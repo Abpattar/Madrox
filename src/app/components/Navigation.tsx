@@ -21,26 +21,26 @@ export function Navigation() {
 
           {/* Center Navigation */}
           <div className="hidden md:flex items-center gap-8">
-            <Link 
-              to="/bill-audit" 
+            <Link
+              to="/bill-audit"
               className="text-sm text-foreground hover:text-primary transition-colors"
             >
               Scan Bill
             </Link>
-            <Link 
-              to="/doctor-search" 
+            <Link
+              to="/doctor-search"
               className="text-sm text-foreground hover:text-primary transition-colors"
             >
               Find Doctors
             </Link>
-            <a 
-              href="#" 
+            <a
+              href="#"
               className="text-sm text-foreground hover:text-primary transition-colors"
             >
               Price DB
             </a>
-            <a 
-              href="#" 
+            <a
+              href="#"
               className="text-sm text-foreground hover:text-primary transition-colors"
             >
               Community
@@ -49,23 +49,23 @@ export function Navigation() {
 
           {/* Right Side */}
           <div className="flex items-center gap-3">
-            <Button 
-              variant="ghost" 
+            <Button
+              variant="ghost"
               size="icon"
               onClick={() => setShowLoginModal(true)}
             >
               <UserCircle className="w-5 h-5" />
             </Button>
-            <Button onClick={() => setShowLoginModal(true)}>
-              Login
+            <Button asChild>
+              <Link to="/login">Login</Link>
             </Button>
           </div>
         </div>
       </nav>
 
-      <LoginModal 
-        open={showLoginModal} 
-        onOpenChange={setShowLoginModal} 
+      <LoginModal
+        open={showLoginModal}
+        onOpenChange={setShowLoginModal}
       />
     </>
   );
