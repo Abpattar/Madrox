@@ -6,6 +6,9 @@ import { LoginPage } from "@/app/pages/LoginPage";
 import { PriceDB } from "@/app/pages/PriceDB";
 import { Community } from "@/app/pages/Community";
 import { About } from "@/app/pages/About";
+import { Careers } from "@/app/pages/Careers";
+import { Press } from "@/app/pages/Press";
+import { Contact } from "@/app/pages/Contact";
 
 export const router = createBrowserRouter([
   {
@@ -35,5 +38,17 @@ export const router = createBrowserRouter([
   {
     path: "/about",
     Component: About,
+  },
+  {
+    path: "/careers",
+    Component: Careers,
+  },
+  {
+    path: "/press",
+    Component: Press,
+  },
+  {
+    path: "/contact",
+    Component: Contact,
   },
 ]);
