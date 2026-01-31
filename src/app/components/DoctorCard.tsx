@@ -1,8 +1,6 @@
 import { MapPin, CheckCircle } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/app/components/ui/avatar";
-import { Badge } from "@/app/components/ui/badge";
-import { Button } from "@/app/components/ui/button";
-import { Progress } from "@/app/components/ui/progress";
+import { motion } from "motion/react";
 
 interface DoctorCardProps {
   doctor: {
@@ -11,13 +9,12 @@ interface DoctorCardProps {
     avatar?: string;
     specialty: string;
     distance: number;
-    skills: string[];
-    trustScore: number;
     verified: boolean;
   };
+  onClick: () => void;
 }
 
-export function DoctorCard({ doctor }: DoctorCardProps) {
+export function DoctorCard({ doctor, onClick }: DoctorCardProps) {
   const initials = doctor.name
     .split(" ")
     .map((n) => n[0])
@@ -25,63 +22,57 @@ export function DoctorCard({ doctor }: DoctorCardProps) {
     .toUpperCase();
 
   return (
-    <div className="bg-card rounded-[12px] shadow-[0_4px_20px_rgba(0,0,0,0.04)] border border-border p-6 space-y-4 transition-all hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)]">
-      {/* Header: Avatar, Name, Verification */}
-      <div className="flex items-start gap-4">
-        <Avatar className="w-14 h-14">
+    <motion.div
+      layoutId={doctor.id}
+      onClick={onClick}
+      className="bg-card border border-border cursor-pointer relative overflow-hidden transition-all hover:translate-y-[-4px] hover:shadow-xl rounded-full aspect-square flex flex-col items-center justify-center text-center shadow-lg w-full max-w-[280px] mx-auto p-4 group"
+      whileHover={{ scale: 1.03 }}
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ type: "spring", stiffness: 300, damping: 25 }}
+    >
+      {/* Avatar Section */}
+      <motion.div layoutId={`avatar-${doctor.id}`} className="relative mb-3 group-hover:scale-105 transition-transform">
+        <Avatar className="w-24 h-24 sm:w-28 sm:h-28 border-[4px] border-background shadow-md">
           <AvatarImage src={doctor.avatar} alt={doctor.name} />
-          <AvatarFallback className="bg-primary/10 text-primary">
+          <AvatarFallback className="bg-primary/5 text-primary text-2xl font-medium">
             {initials}
           </AvatarFallback>
         </Avatar>
-        
-        <div className="flex-1 min-w-0">
-          <div className="flex items-center gap-2">
-            <h3 className="font-semibold text-foreground truncate">
-              {doctor.name}
-            </h3>
-            {doctor.verified && (
-              <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
-            )}
-          </div>
-          <p className="text-sm text-muted-foreground mt-0.5">
-            {doctor.specialty}
-          </p>
-        </div>
-      </div>
-
-      {/* Distance */}
-      <div className="flex items-center gap-2 text-sm text-muted-foreground">
-        <MapPin className="w-4 h-4" />
-        <span>{doctor.distance} km away</span>
-      </div>
-
-      {/* Skill Tags */}
-      <div className="flex flex-wrap gap-2">
-        {doctor.skills.map((skill) => (
-          <Badge 
-            key={skill} 
-            variant="secondary"
-            className="rounded-full px-3 py-1"
+        {doctor.verified && (
+          <motion.div
+            layoutId={`verified-${doctor.id}`}
+            className="absolute bottom-1 right-1 bg-background rounded-full p-1 text-primary shadow-sm"
           >
-            {skill}
-          </Badge>
-        ))}
+            <CheckCircle className="w-5 h-5 fill-background" />
+          </motion.div>
+        )}
+      </motion.div>
+
+      {/* Info - Simplified for Circle */}
+      <div className="flex flex-col items-center gap-1 w-full px-2">
+        <motion.h3
+          layoutId={`name-${doctor.id}`}
+          className="font-bold text-foreground text-lg leading-tight line-clamp-1"
+        >
+          {doctor.name}
+        </motion.h3>
+        <motion.p
+          layoutId={`specialty-${doctor.id}`}
+          className="text-muted-foreground text-sm font-medium line-clamp-1"
+        >
+          {doctor.specialty}
+        </motion.p>
       </div>
 
-      {/* Trust Score */}
-      <div className="space-y-2">
-        <div className="flex items-center justify-between text-sm">
-          <span className="text-muted-foreground">Trust Score</span>
-          <span className="font-semibold text-primary">{doctor.trustScore}%</span>
-        </div>
-        <Progress value={doctor.trustScore} className="h-2" />
-      </div>
-
-      {/* View Profile Button */}
-      <Button className="w-full mt-2">
-        View Profile
-      </Button>
-    </div>
+      {/* Secret layoutID for distance to keep smooth transition if needed, or just hide in circle if too cluttered */}
+      <motion.div
+        className="mt-2 text-xs text-muted-foreground/60 font-medium"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+      >
+        {doctor.distance} km
+      </motion.div>
+    </motion.div>
   );
 }
