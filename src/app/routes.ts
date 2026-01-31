@@ -3,7 +3,7 @@ import { LandingPage } from "@/app/pages/LandingPage";
 import { DoctorSearch } from "@/app/pages/DoctorSearch";
 import { BillAudit } from "@/app/pages/BillAudit";
 import { LoginPage } from "@/app/pages/LoginPage";
-import { PriceDB } from "@/app/pages/PriceDB";
+import { Dashboard } from "@/app/pages/Dashboard";
 import { Community } from "@/app/pages/Community";
 import { About } from "@/app/pages/About";
 import { Careers } from "@/app/pages/Careers";
@@ -28,8 +28,8 @@ export const router = createBrowserRouter([
     Component: LoginPage,
   },
   {
-    path: "/price-db",
-    Component: PriceDB,
+    path: "/dashboard",
+    Component: Dashboard,
   },
   {
     path: "/community",

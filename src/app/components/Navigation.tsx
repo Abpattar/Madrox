@@ -34,10 +34,10 @@ export function Navigation() {
               Find Doctors
             </Link>
             <Link
-              to="/price-db"
+              to="/dashboard"
               className="text-sm text-foreground hover:text-primary transition-colors"
             >
-              Price DB
+              Dashboard
             </Link>
             <Link
               to="/community"

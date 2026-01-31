@@ -40,7 +40,7 @@ const formatRupees = (amount: number) => {
     return new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(amount);
 };
 
-export function PriceDB() {
+export function Dashboard() {
     return (
         <PageTransition className="min-h-screen bg-background pb-32 relative overflow-hidden">
             <BackgroundBlobs />
@@ -56,7 +56,7 @@ export function PriceDB() {
                         className="text-center space-y-4"
                     >
                         <h1 className="text-4xl md:text-5xl font-bold tracking-tight">
-                            Medical Price <span className="text-primary">Database</span>
+                            Medical Price <span className="text-primary">Dashboard</span>
                         </h1>
                         <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
                             Compare prices across hospitals and clinics to ensure you're paying a fair rate.
