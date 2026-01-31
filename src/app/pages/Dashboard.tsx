@@ -6,7 +6,6 @@ import { Search, TrendingUp, DollarSign, Activity } from "lucide-react";
 import { motion } from "motion/react";
 import { PageTransition } from "@/app/components/PageTransition";
 import { Footer } from "@/app/components/Footer";
-import { FloatingSearchBar } from "@/app/components/FloatingSearchBar";
 import {
     BarChart,
     Bar,
@@ -210,7 +209,6 @@ export function Dashboard() {
                     </motion.div>
                 </div>
             </main>
-            <FloatingSearchBar />
             <Footer />
         </PageTransition>
     );

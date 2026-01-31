@@ -1,5 +1,4 @@
 import { Navigation } from "@/app/components/Navigation";
-import { FloatingSearchBar } from "@/app/components/FloatingSearchBar";
 import { DoctorCard } from "@/app/components/DoctorCard";
 import { motion } from "motion/react";
 import { BackgroundBlobs } from "@/app/components/BackgroundBlobs";
@@ -108,7 +107,6 @@ export function DoctorSearch() {
         </div>
       </main>
 
-      <FloatingSearchBar />
       <Footer />
     </PageTransition>
   );

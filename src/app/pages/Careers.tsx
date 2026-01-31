@@ -1,7 +1,6 @@
 import { BackgroundBlobs } from "@/app/components/BackgroundBlobs";
 import { Navigation } from "@/app/components/Navigation";
 import { Footer } from "@/app/components/Footer";
-import { FloatingSearchBar } from "@/app/components/FloatingSearchBar";
 import { PageTransition } from "@/app/components/PageTransition";
 import { motion } from "motion/react";
 import { ArrowRight, Briefcase, Code, Heart, LineChart } from "lucide-react";
@@ -107,7 +106,6 @@ export function Careers() {
                 </div>
             </main>
 
-            <FloatingSearchBar />
             <Footer />
         </PageTransition>
     );

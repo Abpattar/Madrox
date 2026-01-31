@@ -1,6 +1,5 @@
 import { Navigation } from "@/app/components/Navigation";
 import { Link } from "react-router";
-import { FloatingSearchBar } from "@/app/components/FloatingSearchBar";
 import { BackgroundBlobs } from "@/app/components/BackgroundBlobs";
 import { Button } from "@/app/components/ui/button";
 import { motion } from "motion/react";
@@ -144,7 +143,6 @@ export function LandingPage() {
         </div>
       </main>
 
-      <FloatingSearchBar />
       <Footer />
     </PageTransition>
   );

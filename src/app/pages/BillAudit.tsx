@@ -1,7 +1,6 @@
 import { BackgroundBlobs } from "@/app/components/BackgroundBlobs";
 import { useState } from "react";
 import { Navigation } from "@/app/components/Navigation";
-import { FloatingSearchBar } from "@/app/components/FloatingSearchBar";
 import { Upload, AlertTriangle, FileText, Download } from "lucide-react";
 import { Button } from "@/app/components/ui/button";
 import { Card } from "@/app/components/ui/card";
@@ -240,7 +239,6 @@ export function BillAudit() {
         </div>
       </main>
 
-      <FloatingSearchBar />
       <Footer />
     </PageTransition>
   );

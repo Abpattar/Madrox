@@ -14,7 +14,7 @@ export function FloatingSearchBar() {
   };
 
   return (
-    <div className="w-full max-w-3xl mx-auto my-32 px-6 relative z-20">
+    <div className="fixed bottom-6 left-1/2 -translate-x-1/2 w-full max-w-3xl px-6 z-50">
       <div className="bg-white/80 backdrop-blur-md shadow-2xl shadow-primary/10 border border-white/50 rounded-full flex items-center px-6 py-4 gap-4 transition-all hover:shadow-primary/20 hover:scale-[1.01]">
         <Button
           variant="ghost"

@@ -1,5 +1,4 @@
 import { BackgroundBlobs } from "@/app/components/BackgroundBlobs";
-import { FloatingSearchBar } from "@/app/components/FloatingSearchBar";
 import { Navigation } from "@/app/components/Navigation";
 import { Button } from "@/app/components/ui/button";
 import { MessageSquare, Heart, Share2 } from "lucide-react";
@@ -151,7 +150,6 @@ export function Community() {
                     </div>
                 </div>
             </main>
-            <FloatingSearchBar />
             <Footer />
         </PageTransition>
     );
