@@ -4,6 +4,8 @@ import { motion } from "motion/react";
 import { BackgroundBlobs } from "@/app/components/BackgroundBlobs";
 import { PageTransition } from "@/app/components/PageTransition";
 import { Footer } from "@/app/components/Footer";
+import { useState, useEffect } from "react";
+import { RadarSearchLoader } from "@/app/components/RadarSearchLoader";
 
 // Mock doctor data
 const mockDoctors = [
@@ -64,10 +66,22 @@ const mockDoctors = [
 ];
 
 export function DoctorSearch() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate initial search delay
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 3500); // 3.5s to show full loop
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <PageTransition className="min-h-screen bg-background pb-32 relative overflow-hidden">
       <BackgroundBlobs />
       <Navigation />
+
+      {isLoading && <RadarSearchLoader />}
 
       <main className="pt-24 px-6 relative z-10">
         <div className="max-w-7xl mx-auto">
